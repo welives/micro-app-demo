@@ -1,0 +1,7 @@
+node_modules
+.umi
+.umi-production
+.DS_Store
+dist
+.idea
+.vscode
