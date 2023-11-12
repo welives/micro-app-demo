@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>子应用③ -- Vue@2.6.14</h1>
+    <h1>子应用② -- Vue@2.6.14</h1>
     <img alt="Vue logo" src="./assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>

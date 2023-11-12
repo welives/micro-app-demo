@@ -4,9 +4,9 @@ export default defineConfig({
   routes: [
     { path: '/', component: 'index', name: 'Home' },
     { path: '/sub-react-app', component: 'sub-react-app', name: 'Sub-React-App' },
-    { path: '/vite-vue-app', component: 'vite-vue-app', name: 'Vite-Vue-App' },
     { path: '/vue-cli-app', component: 'vue-cli-app', name: 'Vue-Cli-App' },
-    { path: '/svelte-app', component: 'svelte-app', name: 'Svelte-App' },
+    { path: '/vite-vue-app', component: 'vite-vue-app', name: 'Vite-Vue-App' },
+    { path: '/vite-svelte-app', component: 'vite-svelte-app', name: 'Vite-Svelte-App' },
   ],
   npmClient: 'pnpm',
   plugins: [

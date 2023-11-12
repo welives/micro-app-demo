@@ -1,5 +1,5 @@
 {
-  "name": "micro-app",
+  "name": "micro-app-demo",
   "version": "1.0.0",
   "description": "京东微前端框架 micro-app 案例",
   "keywords": [
@@ -12,15 +12,15 @@
     "bootstrap": "pnpm install && npm-run-all --serial install:*",
     "install:main-app": "cd main-app && pnpm install",
     "install:sub-react-app": "cd sub-react-app && pnpm install",
-    "install:vite-vue-app": "cd vite-vue-app && pnpm install",
     "install:vue-cli-app": "cd vue-cli-app && pnpm install",
-    "install:svelte-app": "cd svelte-app && pnpm install",
+    "install:vite-vue-app": "cd vite-vue-app && pnpm install",
+    "install:vite-svelte-app": "cd vite-svelte-app && pnpm install",
     "dev": "npm-run-all --parallel dev-main dev-child:*",
     "dev-main": "cd main-app && pnpm dev",
     "dev-child:sub-react-app": "cd sub-react-app && pnpm start",
-    "dev-child:vite-vue-app": "cd vite-vue-app && pnpm dev",
     "dev-child:vue-cli-app": "cd vue-cli-app && pnpm serve",
-    "dev-child:svelte-app": "cd svelte-app && pnpm dev"
+    "dev-child:vite-vue-app": "cd vite-vue-app && pnpm dev",
+    "dev-child:vite-svelte-app": "cd vite-svelte-app && pnpm dev"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",

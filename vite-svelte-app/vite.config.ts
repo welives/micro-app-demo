@@ -1,8 +1,5 @@
-import { fileURLToPath, URL } from 'node:url'
-
 import { defineConfig, loadEnv } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
+import { svelte } from '@sveltejs/vite-plugin-svelte'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -12,13 +9,8 @@ export default defineConfig(({ mode }) => {
     server: {
       host: env.VITE_APP_HOST,
       port: isNaN(PORT) ? undefined : PORT,
-      open: false
+      open: false,
     },
-    plugins: [vue(), vueJsx()],
-    resolve: {
-      alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url))
-      }
-    }
+    plugins: [svelte()],
   }
 })
