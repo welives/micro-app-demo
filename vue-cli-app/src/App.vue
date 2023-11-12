@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>子应用② -- Vue@2.6.14</h1>
+    <h1>子应用② -- Vue@{{ version }}</h1>
     <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -8,6 +8,17 @@
     <router-view />
   </div>
 </template>
+
+<script lang="ts">
+import { version } from 'vue'
+export default {
+  data() {
+    return {
+      version,
+    }
+  },
+}
+</script>
 
 <style lang="scss">
 #app {
@@ -22,6 +33,7 @@ nav {
   padding: 30px;
 
   a {
+    font-size: 20px;
     font-weight: bold;
     color: #2c3e50;
 

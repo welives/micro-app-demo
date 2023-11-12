@@ -2,6 +2,7 @@
 /** @jsx jsxCustomEvent */
 import jsxCustomEvent from '@micro-zoe/micro-app/polyfill/jsx-custom-event'
 import { Modal } from 'antd'
+import config from '../../childAppConfig'
 export default function ViteVueApp() {
   const onCreated = () => {
     console.log('基座 >>> 子应用③ Vite-Vue-App 创建了')
@@ -28,7 +29,7 @@ export default function ViteVueApp() {
     <div>
       <micro-app
         name="vite-vue-app"
-        url="http://localhost:3300"
+        url={config['vite-vue-app']}
         iframe
         onCreated={onCreated}
         onBeforemount={onBeforemount}

@@ -22,7 +22,8 @@ const routes: Array<RouteConfig> = [
 
 const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
+  // @ts-ignore
+  base: window.__MICRO_APP_BASE_ROUTE__ || process.env.BASE_URL,
   routes,
 })
 

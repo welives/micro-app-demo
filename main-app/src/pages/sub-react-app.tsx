@@ -4,6 +4,7 @@ import jsxCustomEvent from '@micro-zoe/micro-app/polyfill/jsx-custom-event'
 import microApp from '@micro-zoe/micro-app'
 import { Modal, Space, Button, Input, Typography } from 'antd'
 import { useState } from 'react'
+import config from '../../childAppConfig'
 export default function SubReactApp() {
   const [msg, setMsg] = useState('来自基座的初始数据')
   const [childMsg, setChildMsg] = useState()
@@ -44,16 +45,16 @@ export default function SubReactApp() {
       </Space>
       <micro-app
         name="sub-react-app"
-        url="http://localhost:3100"
+        url={config['sub-react-app']}
         clear-data
         // 通过 data 属性发送数据给子应用
         data={{ msg }}
+        onDataChange={onDataChange}
         onCreated={onCreated}
         onBeforemount={onBeforemount}
         onMounted={onMounted}
         onUnmount={onUnmount}
         onError={onError}
-        onDataChange={onDataChange}
       ></micro-app>
     </Space>
   )

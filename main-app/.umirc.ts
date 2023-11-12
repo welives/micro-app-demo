@@ -23,22 +23,4 @@ export default defineConfig({
   layout: {
     title: 'UmiJS Starter',
   },
-  define: {
-    SUB_REACT_APP: {
-      name: 'sub-react-app',
-      url: process.env.SUB_REACT_APP_URL,
-    },
-    VUE_CLI_APP: {
-      name: 'vue-cli-app',
-      url: process.env.VUE_CLI_APP_URL,
-    },
-    VITE_VUE_APP: {
-      name: 'vite-vue-app',
-      url: process.env.VITE_VUE_APP_URL,
-    },
-    VITE_SVELTE_APP: {
-      name: 'vite-svelte-app',
-      url: process.env.VITE_SVELTE_APP_URL,
-    },
-  },
 })
