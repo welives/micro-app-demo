@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { version } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 </script>
@@ -7,7 +8,7 @@ import HelloWorld from './components/HelloWorld.vue'
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
     <div class="wrapper">
-      <h1>子应用③ -- Vue@3.3.4</h1>
+      <h1>子应用③ -- Vue@{{ version }}</h1>
       <HelloWorld msg="You did it!" />
       <nav>
         <RouterLink to="/">Home</RouterLink>

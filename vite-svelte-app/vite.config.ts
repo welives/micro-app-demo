@@ -9,7 +9,6 @@ export default defineConfig(({ mode }) => {
     server: {
       host: env.VITE_APP_HOST,
       port: isNaN(PORT) ? undefined : PORT,
-      open: false,
     },
     plugins: [svelte()],
   }

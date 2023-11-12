@@ -11,8 +11,7 @@ export default defineConfig(({ mode }) => {
   return {
     server: {
       host: env.VITE_APP_HOST,
-      port: isNaN(PORT) ? undefined : PORT,
-      open: false
+      port: isNaN(PORT) ? undefined : PORT
     },
     plugins: [vue(), vueJsx()],
     resolve: {
