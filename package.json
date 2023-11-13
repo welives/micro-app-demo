@@ -4,7 +4,13 @@
   "description": "京东微前端框架 micro-app 案例",
   "keywords": [
     "micro-app",
-    "demo"
+    "demo",
+    "UmiJS",
+    "Vite",
+    "React",
+    "Vue2",
+    "Vue3",
+    "Svelte"
   ],
   "author": "welives",
   "license": "MIT",
