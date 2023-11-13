@@ -34,12 +34,18 @@ export default function VueCliApp() {
   const sendData = () => {
     microApp.setData('vue-cli-app', { data: `来自基座的数据 ${+new Date()}` })
   }
+  const controlChildRouter = () => {
+    microApp.router.push({ name: 'vue-cli-app', path: '/about' })
+  }
   return (
     <Space direction="vertical" size="middle">
       <Space>
         <Input placeholder="发送给子应用②的数据" onChange={(e) => setMsg(e.target.value)}></Input>
         <Button type="primary" onClick={sendData}>
           setData发送数据
+        </Button>
+        <Button type="primary" onClick={controlChildRouter}>
+          打开子应用About页面
         </Button>
         <Typography.Text>{JSON.stringify(childMsg)}</Typography.Text>
       </Space>

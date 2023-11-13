@@ -6,11 +6,11 @@
 </template>
 
 <script lang="ts">
-// @ts-nocheck
-export default {
+import Vue from 'vue'
+export default Vue.extend({
   data() {
     return {
-      data: null,
+      data: null as AnyObj,
     }
   },
   created() {
@@ -29,7 +29,7 @@ export default {
     }
   },
   methods: {
-    handleMicroData(data: Record<string, unknown>) {
+    handleMicroData(data: AnyObj) {
       this.data = data
     },
     sendData() {
@@ -41,7 +41,7 @@ export default {
       }
     },
   },
-}
+})
 </script>
 
 <style scoped>

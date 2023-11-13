@@ -1,11 +1,10 @@
-// @ts-nocheck
 import React from 'react'
 import logo from './logo.svg'
 import './App.css'
 
 function App() {
-  const [data, setData] = React.useState()
-  const handleMicroData = (data: Record<string, unknown>) => {
+  const [data, setData] = React.useState<AnyObj>()
+  const handleMicroData = (data: AnyObj) => {
     setData(data)
   }
   React.useEffect(() => {

@@ -1,11 +1,23 @@
-// @ts-nocheck
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
 Vue.config.productionTip = false
 
-let app = null
+declare global {
+  interface Window {
+    microApp: any
+    __MICRO_APP_NAME__: string
+    __MICRO_APP_ENVIRONMENT__: boolean
+    __MICRO_APP_BASE_ROUTE__: string
+    __MICRO_APP_PUBLIC_PATH__: string
+    mount: () => void
+    unmount: () => void
+  }
+  type AnyObj = Record<string, unknown>
+}
+
+let app: any = null
 // 👇 将渲染操作放入 mount 函数，子应用初始化时会自动执行
 window.mount = () => {
   app = new Vue({

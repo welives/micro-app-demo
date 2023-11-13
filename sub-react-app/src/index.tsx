@@ -1,10 +1,22 @@
-// @ts-nocheck
 import './public-path'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+
+declare global {
+  interface Window {
+    microApp: any
+    __MICRO_APP_NAME__: string
+    __MICRO_APP_ENVIRONMENT__: boolean
+    __MICRO_APP_BASE_ROUTE__: string
+    __MICRO_APP_PUBLIC_PATH__: string
+    mount: () => void
+    unmount: () => void
+  }
+  type AnyObj = Record<string, unknown>
+}
 
 const domNode = document.getElementById('root')
 let root: ReactDOM.Root
