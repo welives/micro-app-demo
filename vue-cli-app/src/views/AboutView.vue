@@ -10,7 +10,7 @@ import Vue from 'vue'
 export default Vue.extend({
   data() {
     return {
-      data: null as AnyObj,
+      data: null as Record<string, any>,
     }
   },
   created() {
@@ -29,7 +29,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    handleMicroData(data: AnyObj) {
+    handleMicroData(data: Record<string, any>) {
       this.data = data
     },
     sendData() {
@@ -48,6 +48,7 @@ export default Vue.extend({
 p {
   font-size: 20px;
 }
+
 button {
   padding: 10px;
   background-color: #fff;

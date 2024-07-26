@@ -6,6 +6,7 @@ import { Modal, Space, Button, Input, Typography } from 'antd'
 import { useState } from 'react'
 import config from '../utils/childAppConfig'
 export default function SubReactApp() {
+  const childBaseRoute = '/sub-react-app'
   const [msg, setMsg] = useState('来自基座的初始数据')
   const [childMsg, setChildMsg] = useState()
   const onCreated = () => {
@@ -45,7 +46,9 @@ export default function SubReactApp() {
       </Space>
       <micro-app
         name="sub-react-app"
-        url={config['sub-react-app']}
+        url={`${config['sub-react-app']}/child/react18`}
+        baseroute={childBaseRoute}
+        disable-memory-router
         clear-data
         // 通过 data 属性发送数据给子应用
         data={{ msg }}

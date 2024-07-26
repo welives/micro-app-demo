@@ -11,7 +11,7 @@ declare global {
     mount: () => void
     unmount: () => void
   }
-  type AnyObj = Record<string, unknown>
+  type AnyObj = Record<string, any>
 }
 
 let app: any = null

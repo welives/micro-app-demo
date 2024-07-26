@@ -6,6 +6,7 @@ import { Modal, Space, Button, Input, Typography } from 'antd'
 import { useState } from 'react'
 import config from '../utils/childAppConfig'
 export default function ViteVueApp() {
+  const childBaseRoute = '/vite-vue-app'
   const [msg, setMsg] = useState('来自基座的初始数据')
   const [childMsg, setChildMsg] = useState()
   const onCreated = () => {
@@ -36,7 +37,7 @@ export default function ViteVueApp() {
   }
   // 操作子应用的路由
   const controlChildRouter = () => {
-    microApp.router.push({ name: 'vite-vue-app', path: '/about' })
+    microApp.router.push({ name: 'vite-vue-app', path: `${childBaseRoute}/about` })
   }
   return (
     <Space direction="vertical" size="middle">
@@ -52,7 +53,9 @@ export default function ViteVueApp() {
       </Space>
       <micro-app
         name="vite-vue-app"
-        url={config['vite-vue-app']}
+        url={`${config['vite-vue-app']}/child/vite-vue3`}
+        baseroute={childBaseRoute}
+        disable-memory-router
         iframe
         clear-data
         data={{ msg }}

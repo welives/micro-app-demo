@@ -6,6 +6,7 @@ import { Modal, Space, Button, Input, Typography } from 'antd'
 import { useState } from 'react'
 import config from '../utils/childAppConfig'
 export default function VueCliApp() {
+  const childBaseRoute = '/vue-cli-app'
   const [msg, setMsg] = useState('来自基座的初始数据')
   const [childMsg, setChildMsg] = useState()
   const onCreated = () => {
@@ -35,7 +36,7 @@ export default function VueCliApp() {
     microApp.setData('vue-cli-app', { data: `来自基座的数据 ${+new Date()}` })
   }
   const controlChildRouter = () => {
-    microApp.router.push({ name: 'vue-cli-app', path: '/about' })
+    microApp.router.push({ name: 'vue-cli-app', path: `${childBaseRoute}/about` })
   }
   return (
     <Space direction="vertical" size="middle">
@@ -51,8 +52,8 @@ export default function VueCliApp() {
       </Space>
       <micro-app
         name="vue-cli-app"
-        url={config['vue-cli-app']}
-        baseroute="/vue-cli-app"
+        url={`${config['vue-cli-app']}/child/vue2`}
+        baseroute={childBaseRoute}
         disable-memory-router
         clear-data
         data={{ msg }}

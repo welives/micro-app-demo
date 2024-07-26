@@ -8,4 +8,5 @@ module.exports = defineConfig({
       'Access-Control-Allow-Origin': '*',
     },
   },
+  publicPath: '/child/vue2'
 })

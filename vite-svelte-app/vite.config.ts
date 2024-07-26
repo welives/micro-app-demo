@@ -6,6 +6,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
   const PORT = parseInt(env.VITE_APP_PORT)
   return {
+    base: '/child/vite-svelte',
     server: {
       host: env.VITE_APP_HOST,
       port: isNaN(PORT) ? undefined : PORT,
