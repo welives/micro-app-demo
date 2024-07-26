@@ -1,6 +1,7 @@
 {
   "name": "micro-app-demo",
   "version": "1.0.0",
+  "private": true,
   "description": "京东微前端框架 micro-app 案例",
   "keywords": [
     "micro-app",
@@ -15,21 +16,27 @@
   "author": "welives",
   "license": "MIT",
   "scripts": {
-    "bootstrap": "pnpm install && npm-run-all --serial install:*",
-    "install:main-app": "cd main-app && pnpm install",
-    "install:sub-react-app": "cd sub-react-app && pnpm install",
-    "install:vue-cli-app": "cd vue-cli-app && pnpm install",
-    "install:vite-vue-app": "cd vite-vue-app && pnpm install",
-    "install:vite-svelte-app": "cd vite-svelte-app && pnpm install",
-    "dev": "npm-run-all --parallel dev-main dev-child:*",
-    "dev-main": "cd main-app && pnpm dev",
-    "dev-child:sub-react-app": "cd sub-react-app && pnpm start",
-    "dev-child:vue-cli-app": "cd vue-cli-app && pnpm serve",
-    "dev-child:vite-vue-app": "cd vite-vue-app && pnpm dev",
-    "dev-child:vite-svelte-app": "cd vite-svelte-app && pnpm dev"
+    "dev": "npm-run-all --parallel dev:main-app dev:child:*",
+    "dev:main-app": "pnpm -F main-app dev",
+    "dev:child-react18": "pnpm -F child-react18 start",
+    "dev:child-vue2": "pnpm -F child-vue2 serve",
+    "dev:child-vue3": "pnpm -F child-vue3 dev",
+    "dev:child-svelte": "pnpm -F child-svelte dev",
+    "build:main-app": "pnpm -F main-app build",
+    "build:child-react18": "pnpm -F child-react18 build",
+    "build:child-vue2": "pnpm -F child-vue2 build",
+    "build:child-vue3": "pnpm -F child-vue3 build",
+    "build:child-svelte": "pnpm -F child-svelte build",
+    "preinstall": "npx only-allow pnpm"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
     "npm-run-all": "^4.1.5"
-  }
+  },
+  "engines": {
+    "node": ">= 20"
+  },
+  "workspaces": [
+    "apps/*"
+  ]
 }

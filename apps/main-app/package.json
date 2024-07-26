@@ -1,5 +1,5 @@
 {
-  "name": "umijs-starter",
+  "name": "main-app",
   "version": "1.0.0",
   "description": "开箱即用的基于 UmiJS4 + AntDesign + TailwindCSS + TypeScript 的模板",
   "keywords": [
@@ -17,9 +17,7 @@
     "build": "umi build",
     "dev": "umi dev",
     "postinstall": "umi setup",
-    "lint": "umi lint",
-    "setup": "umi setup",
-    "start": "npm run dev"
+    "lint": "umi lint"
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
