@@ -4,27 +4,27 @@ import jsxCustomEvent from '@micro-zoe/micro-app/polyfill/jsx-custom-event'
 import microApp from '@micro-zoe/micro-app'
 import { Modal, Space, Button, Input, Typography } from 'antd'
 import { useState } from 'react'
-import config from '../utils/childAppConfig'
-export default function SubReactApp() {
-  const childBaseRoute = '/sub-react-app'
+import config, { ChildAppKey } from '../config/micro-app'
+export default function ViteSvelteApp() {
+  const childBaseRoute = `/${ChildAppKey.CHILD_SVELTE}`
   const [msg, setMsg] = useState('来自基座的初始数据')
   const [childMsg, setChildMsg] = useState()
   const onCreated = () => {
-    console.log('基座 >>> 子应用① 创建了')
+    console.log('基座 >>> 子应用④ 创建了')
   }
   const onBeforemount = () => {
-    console.log('基座 >>> 子应用① 即将被渲染')
+    console.log('基座 >>> 子应用④ 即将被渲染')
   }
   const onMounted = () => {
-    console.log('基座 >>> 子应用① 已经渲染完成')
+    console.log('基座 >>> 子应用④ 已经渲染完成')
   }
   const onUnmount = () => {
-    console.log('基座 >>> 子应用① 已经卸载')
+    console.log('基座 >>> 子应用④ 已经卸载')
   }
   const onError = () => {
     Modal.error({
       title: '提示',
-      content: '子应用① 加载失败',
+      content: '子应用④ 加载失败',
     })
   }
   // 获取子应用发送过来的数据
@@ -33,24 +33,24 @@ export default function SubReactApp() {
   }
   // 手动发送数据给子应用,第二个参数只接受对象类型
   const sendData = () => {
-    microApp.setData('sub-react-app', { data: `来自基座的数据 ${+new Date()}` })
+    microApp.setData('vite-svelte-app', { data: `来自基座的数据 ${+new Date()}` })
   }
   return (
     <Space direction="vertical" size="middle">
       <Space>
-        <Input placeholder="发送给子应用①的数据" onChange={(e) => setMsg(e.target.value)}></Input>
+        <Input placeholder="发送给子应用④的数据" onChange={(e) => setMsg(e.target.value)}></Input>
         <Button type="primary" onClick={sendData}>
           setData发送数据
         </Button>
         <Typography.Text>{JSON.stringify(childMsg)}</Typography.Text>
       </Space>
       <micro-app
-        name="sub-react-app"
-        url={`${config['sub-react-app']}/child/react18`}
+        name="vite-svelte-app"
+        url={`${config[ChildAppKey.CHILD_SVELTE]}/child/vite-svelte`}
         baseroute={childBaseRoute}
         disable-memory-router
+        iframe
         clear-data
-        // 通过 data 属性发送数据给子应用
         data={{ msg }}
         onDataChange={onDataChange}
         onCreated={onCreated}

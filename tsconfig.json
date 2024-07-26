@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    "allowJs": true,
+    "sourceMap": true,
+    "strict": true, // 启用所有严格类型检查选项
+    "noEmit": true, // 不生成输出文件
+    "declaration": true, // 生成相应的 '.d.ts' 文件
+    "isolatedModules": true, // 将每个文件做为单独的模块
+    "resolveJsonModule": true, // 允许加载 JSON 文件
+    "skipLibCheck": true, // 跳过.d.ts类型声明文件的类型检查
+    "noUnusedLocals": true, // 有未使用的变量时，抛出错误
+    "noImplicitAny": true, // 在表达式和声明上有隐含的 any类型时报错
+    "strictNullChecks": false, // 启用严格的 null 检查
+    "esModuleInterop": true, // 用来兼容commonjs的
+    "emitDecoratorMetadata": true, // 为装饰器提供元数据的支持
+    "experimentalDecorators": true, // 启用装饰器
+    "types": ["node"]
+  },
+  "exclude": ["**/node_modules/**", "**/dist/**", "**/examples/**", "**/docs/**", "**/playground/**", "**/test/**"]
+}

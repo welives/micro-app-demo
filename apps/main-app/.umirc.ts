@@ -1,12 +1,13 @@
 import { defineConfig } from 'umi'
+import { ChildAppKey } from './src/config/micro-app'
 
 export default defineConfig({
   routes: [
     { path: '/', component: 'index', name: 'Home' },
-    { path: '/sub-react-app', component: 'sub-react-app', name: 'Sub-React-App' },
-    { path: '/vue-cli-app', component: 'vue-cli-app', name: 'Vue-Cli-App' },
-    { path: '/vite-vue-app', component: 'vite-vue-app', name: 'Vite-Vue-App' },
-    { path: '/vite-svelte-app', component: 'vite-svelte-app', name: 'Vite-Svelte-App' },
+    { path: ChildAppKey.CHILD_REACT18, component: 'child-react18', name: ChildAppKey.CHILD_REACT18 },
+    { path: ChildAppKey.CHILD_VUE2, component: 'child-vue2', name: ChildAppKey.CHILD_VUE2 },
+    { path: ChildAppKey.CHILD_VUE3, component: 'child-vue3', name: ChildAppKey.CHILD_VUE3 },
+    { path: ChildAppKey.CHILD_SVELTE, component: 'child-svelte', name: ChildAppKey.CHILD_SVELTE },
   ],
   npmClient: 'pnpm',
   plugins: [

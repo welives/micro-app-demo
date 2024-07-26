@@ -1,24 +1,39 @@
+# 设置基础镜像
 FROM node:20-slim AS base
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
+WORKDIR /app
+
+# 安装turbo
+RUN npm i -g turbo --registry=https://registry.npmmirror.com
+
+FROM base AS pnpm
 RUN corepack enable
 
-FROM base AS build
-WORKDIR /usr/src/app
+# 定义工作区,用来存放代码
+FROM base as workspace
 COPY . .
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
-RUN pnpm run -r build
-RUN pnpm deploy --filter=app1 --prod /prod/app1
-RUN pnpm deploy --filter=app2 --prod /prod/app2
+RUN turbo prune main-app --docker
 
-FROM base AS app1
-COPY --from=build /prod/app1 /prod/app1
-WORKDIR /prod/app1
-EXPOSE 8000
-CMD [ "pnpm", "start" ]
+# 定义构建器
+FROM pnpm AS builder
+COPY .gitignore .gitignore
+COPY --from=workspace /app/out/json/ .
+COPY --from=workspace /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
+RUN pnpm install
 
-FROM base AS app2
-COPY --from=build /prod/app2 /prod/app2
-WORKDIR /prod/app2
-EXPOSE 8001
-CMD [ "pnpm", "start" ]
+COPY --from=workspace /app/out/full/ .
+# 构建主应用
+RUN pnpm exec turbo run build --filter=main-app
+
+# 设置nginx镜像
+FROM nginx:latest
+RUN rm -rf /usr/share/nginx/html/*
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# 复制构建产物到nginx的服务目录
+COPY --from=builder /app/apps/main-app/dist /usr/share/nginx/html
+
+# 暴露80端口
+EXPOSE 80
+# 将nginx转为前台进程
+CMD ["nginx", "-g", "daemon off;"]

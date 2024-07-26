@@ -4,9 +4,9 @@ import jsxCustomEvent from '@micro-zoe/micro-app/polyfill/jsx-custom-event'
 import microApp from '@micro-zoe/micro-app'
 import { Modal, Space, Button, Input, Typography } from 'antd'
 import { useState } from 'react'
-import config from '../utils/childAppConfig'
+import config, { ChildAppKey } from '../config/micro-app'
 export default function ViteVueApp() {
-  const childBaseRoute = '/vite-vue-app'
+  const childBaseRoute = `/${ChildAppKey.CHILD_VUE3}`
   const [msg, setMsg] = useState('来自基座的初始数据')
   const [childMsg, setChildMsg] = useState()
   const onCreated = () => {
@@ -53,7 +53,7 @@ export default function ViteVueApp() {
       </Space>
       <micro-app
         name="vite-vue-app"
-        url={`${config['vite-vue-app']}/child/vite-vue3`}
+        url={`${config[ChildAppKey.CHILD_VUE3]}/child/vite-vue3`}
         baseroute={childBaseRoute}
         disable-memory-router
         iframe

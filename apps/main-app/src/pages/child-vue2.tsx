@@ -4,9 +4,9 @@ import jsxCustomEvent from '@micro-zoe/micro-app/polyfill/jsx-custom-event'
 import microApp from '@micro-zoe/micro-app'
 import { Modal, Space, Button, Input, Typography } from 'antd'
 import { useState } from 'react'
-import config from '../utils/childAppConfig'
+import config, { ChildAppKey } from '../config/micro-app'
 export default function VueCliApp() {
-  const childBaseRoute = '/vue-cli-app'
+  const childBaseRoute = `/${ChildAppKey.CHILD_VUE2}`
   const [msg, setMsg] = useState('来自基座的初始数据')
   const [childMsg, setChildMsg] = useState()
   const onCreated = () => {
@@ -52,7 +52,7 @@ export default function VueCliApp() {
       </Space>
       <micro-app
         name="vue-cli-app"
-        url={`${config['vue-cli-app']}/child/vue2`}
+        url={`${config[ChildAppKey.CHILD_VUE2]}/child/vue2`}
         baseroute={childBaseRoute}
         disable-memory-router
         clear-data
