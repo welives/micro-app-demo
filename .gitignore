@@ -22,9 +22,3 @@ logs
 *.log
 # eslint
 .eslintcache
-
-# next.js build output
-.next
-
-# nuxt.js build output
-.nuxt
