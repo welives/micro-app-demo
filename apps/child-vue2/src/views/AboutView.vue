@@ -14,6 +14,7 @@ export default Vue.extend({
     }
   },
   created() {
+    // 是否是微前端环境
     if (window.__MICRO_APP_ENVIRONMENT__) {
       // 主动获取基座下发的数据
       const parentData = window.microApp.getData()

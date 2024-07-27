@@ -4,9 +4,10 @@ import jsxCustomEvent from '@micro-zoe/micro-app/polyfill/jsx-custom-event'
 import microApp from '@micro-zoe/micro-app'
 import { Modal, Space, Button, Input, Typography } from 'antd'
 import { useState } from 'react'
-import config, { ChildAppKey } from '../config/micro-app'
+import { ChildAppName } from '../constants'
+import microAppConfig from '../../micro-app-config'
 export default function ViteSvelteApp() {
-  const childBaseRoute = `/${ChildAppKey.CHILD_SVELTE}`
+  const childBaseRoute = `/${ChildAppName.CHILD_SVELTE}`
   const [msg, setMsg] = useState('来自基座的初始数据')
   const [childMsg, setChildMsg] = useState()
   const onCreated = () => {
@@ -33,7 +34,7 @@ export default function ViteSvelteApp() {
   }
   // 手动发送数据给子应用,第二个参数只接受对象类型
   const sendData = () => {
-    microApp.setData('vite-svelte-app', { data: `来自基座的数据 ${+new Date()}` })
+    microApp.setData(ChildAppName.CHILD_SVELTE, { data: `来自基座的数据 ${+new Date()}` })
   }
   return (
     <Space direction="vertical" size="middle">
@@ -45,8 +46,8 @@ export default function ViteSvelteApp() {
         <Typography.Text>{JSON.stringify(childMsg)}</Typography.Text>
       </Space>
       <micro-app
-        name="vite-svelte-app"
-        url={`${config[ChildAppKey.CHILD_SVELTE]}/child/vite-svelte`}
+        name={ChildAppName.CHILD_SVELTE}
+        url={`${microAppConfig[ChildAppName.CHILD_SVELTE]}/child/vite-svelte`}
         baseroute={childBaseRoute}
         disable-memory-router
         iframe

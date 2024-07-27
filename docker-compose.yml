@@ -1,9 +1,21 @@
 version: '3.9'
 
 services:
-  micro-app-demo:
+  web:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        # 传入环境变量
+        MAIN_APP_NAME: "main-app"
+        CHILD_REACT_NAME: "child-react18"
+        CHILD_VUE2_NAME: "child-vue2"
+        CHILD_VUE3_NAME: "child-vue3"
+        CHILD_SVELTE_NAME: "child-svelte"
+
+        CHILD_REACT_FOLDER: "react18"
+        CHILD_VUE2_FOLDER: "vue2"
+        CHILD_VUE3_FOLDER: "vite-vue3"
+        CHILD_SVELTE_FOLDER: "vite-svelte"
     ports:
       - 8080:80

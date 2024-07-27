@@ -4,9 +4,10 @@ import jsxCustomEvent from '@micro-zoe/micro-app/polyfill/jsx-custom-event'
 import microApp from '@micro-zoe/micro-app'
 import { Modal, Space, Button, Input, Typography } from 'antd'
 import { useState } from 'react'
-import config, { ChildAppKey } from '../config/micro-app'
+import { ChildAppName } from '../constants'
+import microAppConfig from '../../micro-app-config'
 export default function ViteVueApp() {
-  const childBaseRoute = `/${ChildAppKey.CHILD_VUE3}`
+  const childBaseRoute = `/${ChildAppName.CHILD_VUE3}`
   const [msg, setMsg] = useState('来自基座的初始数据')
   const [childMsg, setChildMsg] = useState()
   const onCreated = () => {
@@ -33,11 +34,13 @@ export default function ViteVueApp() {
   }
   // 手动发送数据给子应用,第二个参数只接受对象类型
   const sendData = () => {
-    microApp.setData('vite-vue-app', { data: `来自基座的数据 ${+new Date()}` })
+    microApp.setData(ChildAppName.CHILD_VUE3, { data: `来自基座的数据 ${+new Date()}` })
   }
   // 操作子应用的路由
   const controlChildRouter = () => {
-    microApp.router.push({ name: 'vite-vue-app', path: `${childBaseRoute}/about` })
+    // 子应用不设置 baseroute 时, 路由跳转也不要加 baseroute
+    microApp.router.push({ name: ChildAppName.CHILD_VUE3, path: `/about` })
+    // microApp.router.push({ name: ChildAppName.CHILD_VUE3, path: `${childBaseRoute}/about` })
   }
   return (
     <Space direction="vertical" size="middle">
@@ -52,10 +55,13 @@ export default function ViteVueApp() {
         <Typography.Text>{JSON.stringify(childMsg)}</Typography.Text>
       </Space>
       <micro-app
-        name="vite-vue-app"
-        url={`${config[ChildAppKey.CHILD_VUE3]}/child/vite-vue3`}
-        baseroute={childBaseRoute}
-        disable-memory-router
+        name={ChildAppName.CHILD_VUE3}
+        // 使用默认的 search 模式路由就正常,只是url难看而已
+        url={`${microAppConfig[ChildAppName.CHILD_VUE3]}/child/vite-vue3`}
+        // 下面两个都会导致子应用刷新变空白的问题, 估计是刷新后找不到匹配的路由, 暂时没空去处理
+        // baseroute={childBaseRoute}
+        // 开启这个虚拟路由的话,在子应用的子路由刷新页面会变空白
+        // disable-memory-router
         iframe
         clear-data
         data={{ msg }}

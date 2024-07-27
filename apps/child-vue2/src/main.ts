@@ -32,6 +32,7 @@ window.unmount = () => {
   app.$destroy()
   app.$el.innerHTML = ''
   app = null
+  console.log('子应用② >>> 卸载了')
 }
 
 // 👇 如果不在微前端环境，则直接执行mount渲染

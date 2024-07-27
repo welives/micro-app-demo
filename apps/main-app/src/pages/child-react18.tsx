@@ -4,9 +4,10 @@ import jsxCustomEvent from '@micro-zoe/micro-app/polyfill/jsx-custom-event'
 import microApp from '@micro-zoe/micro-app'
 import { Modal, Space, Button, Input, Typography } from 'antd'
 import { useState } from 'react'
-import config, { ChildAppKey } from '../config/micro-app'
+import { ChildAppName } from '../constants'
+import microAppConfig from '../../micro-app-config'
 export default function SubReactApp() {
-  const childBaseRoute = `/${ChildAppKey.CHILD_REACT18}`
+  const childBaseRoute = `/${ChildAppName.CHILD_REACT18}`
   const [msg, setMsg] = useState('来自基座的初始数据')
   const [childMsg, setChildMsg] = useState()
   const onCreated = () => {
@@ -33,7 +34,7 @@ export default function SubReactApp() {
   }
   // 手动发送数据给子应用,第二个参数只接受对象类型
   const sendData = () => {
-    microApp.setData(ChildAppKey.CHILD_REACT18, { data: `来自基座的数据 ${+new Date()}` })
+    microApp.setData(ChildAppName.CHILD_REACT18, { data: `来自基座的数据 ${+new Date()}` })
   }
   return (
     <Space direction="vertical" size="middle">
@@ -45,8 +46,8 @@ export default function SubReactApp() {
         <Typography.Text>{JSON.stringify(childMsg)}</Typography.Text>
       </Space>
       <micro-app
-        name="sub-react-app"
-        url={`${config[ChildAppKey.CHILD_REACT18]}/child/react18`}
+        name={ChildAppName.CHILD_REACT18}
+        url={`${microAppConfig[ChildAppName.CHILD_REACT18]}/child/react18`}
         baseroute={childBaseRoute}
         disable-memory-router
         clear-data
